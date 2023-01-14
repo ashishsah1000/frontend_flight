@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
 import { BiErrorCircle } from "react-icons/bi";
+import { HiArrowRight, HiOutlineArrowsRightLeft } from "react-icons/hi2";
 export default function SearchBox({ callback = () => {} }) {
   const options = [
     { value: "Rahargora", label: "Rahargora" },
@@ -28,6 +29,7 @@ export default function SearchBox({ callback = () => {} }) {
   const [flightClass, setflightClass] = useState("economy");
 
   const [error, setError] = useState(false);
+  const [oneWay, setoneWay] = useState(false);
 
   const handleSearch = () => {
     console.log(
@@ -89,6 +91,25 @@ export default function SearchBox({ callback = () => {} }) {
           <Heading size={"md"}>Book a Flight</Heading>
         </CardHeader>
         <CardBody marginTop={"-20px"}>
+          <Box display={"flex"} gap={"12px"}>
+            <Button
+              onClick={() => setoneWay(false)}
+              colorScheme={!oneWay ? "teal" : "gray"}
+              size={"sm"}
+              leftIcon={<HiOutlineArrowsRightLeft />}
+            >
+              Two Way
+            </Button>
+            <Button
+              onClick={() => setoneWay(true)}
+              colorScheme={oneWay ? "teal" : "gray"}
+              leftIcon={<HiArrowRight />}
+              size={"sm"}
+            >
+              One Way
+            </Button>
+          </Box>
+
           <Stack direction={["column", "row"]} spacing="24px">
             <Box width="300px">
               <Stack direction={"row"} padding={"10px 0px"}>
@@ -114,15 +135,21 @@ export default function SearchBox({ callback = () => {} }) {
               />
             </Box>
             <Box width="300px">
-              <Stack direction={"row"} padding={"10px 0px"}>
-                <Badge colorScheme={"green"}>Returning</Badge>
-              </Stack>
+              {!oneWay ? (
+                <>
+                  <Stack direction={"row"} padding={"10px 0px"}>
+                    <Badge colorScheme={"green"}>Returning</Badge>
+                  </Stack>
 
-              <Input
-                type={"date"}
-                placeholder="Returning Date"
-                onChange={(e) => setreturnon(e.target.value)}
-              />
+                  <Input
+                    type={"date"}
+                    placeholder="Returning Date"
+                    onChange={(e) => setreturnon(e.target.value)}
+                  />
+                </>
+              ) : (
+                <></>
+              )}
             </Box>
           </Stack>
         </CardBody>
