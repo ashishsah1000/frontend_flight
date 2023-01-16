@@ -14,7 +14,7 @@ import {
 import { AiOutlineUser } from "react-icons/ai";
 import { BiErrorCircle } from "react-icons/bi";
 import { HiArrowRight, HiOutlineArrowsRightLeft } from "react-icons/hi2";
-export default function SearchBox({ callback = () => {} }) {
+export default function SearchBox({ callback = () => {}, width = "800" }) {
   const options = [
     { value: "Rahargora", label: "Rahargora" },
     { value: "Bistupur", label: "Bistupur" },
@@ -29,7 +29,7 @@ export default function SearchBox({ callback = () => {} }) {
   const [flightClass, setflightClass] = useState("economy");
 
   const [error, setError] = useState(false);
-  const [oneWay, setoneWay] = useState(false);
+  const [oneWay, setoneWay] = useState(true);
 
   const handleSearch = () => {
     console.log(
@@ -78,7 +78,7 @@ export default function SearchBox({ callback = () => {} }) {
       bg="white"
       style={{
         borderRadius: "10px",
-        width: "80vw",
+        width: 80 + "%",
         margin: "auto",
         background: "tomato",
         zIndex: 99,
@@ -110,7 +110,7 @@ export default function SearchBox({ callback = () => {} }) {
             </Button>
           </Box>
 
-          <Stack direction={["column", "row"]} spacing="24px">
+          <Stack direction={width >= 800 ? "row" : "column"} spacing="24px">
             <Box width="300px">
               <Stack direction={"row"} padding={"10px 0px"}>
                 <Badge colorScheme={"yellow"}>From</Badge>

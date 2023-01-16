@@ -1,12 +1,11 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import { SearchBox } from "../../components/composite";
+import { Flight, SearchBox, TwoWayFlight } from "../../components/composite";
 import { Navbar } from "../../components/composite";
 export default function Home() {
   return (
     <div>
       <Box height={"100vh"} width={"100vw"} bg="white">
-        <Navbar />
         <Box
           style={{
             height: "60vh",
@@ -23,6 +22,9 @@ export default function Home() {
         ></Box>
         <Box style={{ marginTop: "-100px" }}>
           <SearchBox />
+        </Box>
+        <Box width={"80%"} padding={"40px 40px"} margin={"auto"}>
+          <TwoWayFlight />
         </Box>
       </Box>
     </div>
